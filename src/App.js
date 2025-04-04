@@ -1,13 +1,10 @@
-
-// import logo from './logo.svg';
-// import './App.css';
-import SpellCheckApp from "./Spell";
-
+import React from "react";
+import XDictionary from "./components/XDictionary";
 
 function App() {
   return (
-    <div className="App">
-      <SpellCheckApp/>
+    <div>
+      <XDictionary />
     </div>
   );
 }
