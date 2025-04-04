@@ -1,12 +1,8 @@
 import React from "react";
-import XDictionary from "./components/XDictionary";
+import XTable from "./XTable";
 
 function App() {
-  return (
-    <div>
-      <XDictionary />
-    </div>
-  );
+  return <XTable />;
 }
 
 export default App;
