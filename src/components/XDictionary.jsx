@@ -1,52 +1,44 @@
 import React, { useState } from "react";
-import "../App.css";
 
 const XDictionary = () => {
-  // Predefined dictionary
-  const dictionary = [
-    { word: "React", meaning: "A JavaScript library for building user interfaces." },
-    { word: "Component", meaning: "A reusable building block in React." },
-    { word: "State", meaning: "An object that stores data for a component." }
-  ];
-
-  // State variables
-  const [searchTerm, setSearchTerm] = useState("");
+  const [word, setWord] = useState("");
   const [definition, setDefinition] = useState("");
 
-  // Function to handle search
+  const dictionary = {
+    React: "A JavaScript library for building user interfaces.",
+    Component: "A reusable building block in React.",
+  };
+
   const handleSearch = () => {
-    if (!searchTerm.trim()) {
-      setDefinition("Type a word to search.");
+    if (!word.trim()) {
+      setDefinition("Word not found in the dictionary.");
       return;
     }
 
-    const foundWord = dictionary.find(
-      (entry) => entry.word.toLowerCase() === searchTerm.toLowerCase()
+    const lowerCaseWord = word.trim().toLowerCase();
+    const foundWord = Object.keys(dictionary).find(
+      (key) => key.toLowerCase() === lowerCaseWord
     );
-    
+
     if (foundWord) {
-      setDefinition(foundWord.meaning);
+      setDefinition(dictionary[foundWord]);
     } else {
       setDefinition("Word not found in the dictionary.");
     }
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div>
       <h1>Dictionary App</h1>
       <input
         type="text"
-        placeholder="Enter a word"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        value={word}
+        onChange={(e) => setWord(e.target.value)}
+        placeholder="Enter a word..."
       />
       <button onClick={handleSearch}>Search</button>
-
-      {/* ✅ Always Render "Definition:" so Cypress Finds It */}
-      <div>
-        <h3>Definition:</h3>
-        <p>{definition || "Type a word to search."}</p>
-      </div>
+      <p>Definition:</p>
+      <p>{definition}</p>
     </div>
   );
 };
