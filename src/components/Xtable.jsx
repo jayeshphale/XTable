@@ -1,42 +1,43 @@
 import React, { useState } from "react";
 
 const XTable = () => {
-  const initialData = [
+  // Define initial table data
+  const [data, setData] = useState([
     { date: "2022-09-01", views: 100, article: "Article 1" },
     { date: "2023-09-01", views: 100, article: "Article 1" },
     { date: "2023-09-02", views: 150, article: "Article 2" },
     { date: "2023-09-02", views: 120, article: "Article 3" },
-    { date: "2020-09-03", views: 200, article: "Article 4" },
-  ];
+    { date: "2020-09-03", views: 200, article: "Article 4" }
+  ]);
 
-  const [data, setData] = useState(initialData);
-
+  // Function to sort by date (latest first)
   const sortByDate = () => {
     const sortedData = [...data].sort((a, b) => {
-      if (b.date === a.date) return b.views - a.views; // Sort by views if dates are same
-      return new Date(b.date) - new Date(a.date); // Sort by latest date first
+      if (a.date === b.date) {
+        return b.views - a.views; // If dates are same, sort by views (higher first)
+      }
+      return new Date(b.date) - new Date(a.date);
     });
     setData(sortedData);
   };
 
+  // Function to sort by views (highest first)
   const sortByViews = () => {
     const sortedData = [...data].sort((a, b) => {
-      if (b.views === a.views) return new Date(b.date) - new Date(a.date); // Sort by date if views are same
-      return b.views - a.views; // Sort by highest views first
+      if (a.views === b.views) {
+        return new Date(b.date) - new Date(a.date); // If views are same, sort by date (latest first)
+      }
+      return b.views - a.views;
     });
     setData(sortedData);
   };
 
   return (
-    <div style={{ textAlign: "center", margin: "20px" }}>
+    <div>
       <h1>Date and Views Table</h1>
-      <button onClick={sortByDate} style={{ margin: "5px", padding: "10px" }}>
-        Sort by Date
-      </button>
-      <button onClick={sortByViews} style={{ margin: "5px", padding: "10px" }}>
-        Sort by Views
-      </button>
-      <table border="1" style={{ margin: "auto", marginTop: "20px", width: "50%" }}>
+      <button onClick={sortByDate}>Sort by Date</button>
+      <button onClick={sortByViews}>Sort by Views</button>
+      <table border="1">
         <thead>
           <tr>
             <th>Date</th>
@@ -45,11 +46,11 @@ const XTable = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
+          {data.map((row, index) => (
             <tr key={index}>
-              <td>{item.date}</td>
-              <td>{item.views}</td>
-              <td>{item.article}</td>
+              <td>{row.date}</td>
+              <td>{row.views}</td>
+              <td>{row.article}</td>
             </tr>
           ))}
         </tbody>

@@ -1,48 +1,21 @@
-/* Centering the dictionary container */
-.dictionary-container {
+h1 {
   text-align: center;
-  margin-top: 50px;
-  font-family: Arial, sans-serif;
 }
 
-/* Styling the input field */
-input {
-  width: 250px;
+table {
+  width: 50%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+th, td {
   padding: 10px;
-  font-size: 16px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  margin-right: 10px;
+  text-align: center;
 }
 
-/* Styling the Search button */
 button {
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Styling the definition output */
-.definition-box {
-  margin-top: 20px;
+  display: block;
+  margin: 10px auto;
   padding: 10px;
-  border: 1px solid #ddd;
-  display: inline-block;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-}
-
-/* Styling for the error message */
-.error-message {
-  color: red;
-  font-weight: bold;
+  cursor: pointer;
 }
