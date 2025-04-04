@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../App.css"; // Make sure this path is correct
+import "../App.css";
 
 const XDictionary = () => {
-  // Our predefined dictionary
+  // Predefined dictionary
   const dictionary = [
     { word: "React", meaning: "A JavaScript library for building user interfaces." },
     { word: "Component", meaning: "A reusable building block in React." },
@@ -11,10 +11,15 @@ const XDictionary = () => {
 
   // State variables
   const [searchTerm, setSearchTerm] = useState("");
-  const [definition, setDefinition] = useState(null);
+  const [definition, setDefinition] = useState("");
 
   // Function to handle search
   const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      setDefinition("Type a word to search.");
+      return;
+    }
+
     const foundWord = dictionary.find(
       (entry) => entry.word.toLowerCase() === searchTerm.toLowerCase()
     );
@@ -32,15 +37,16 @@ const XDictionary = () => {
       />
       <button onClick={handleSearch}>Search</button>
 
-      {definition !== null && (
+      {/* Display definition only when a search is performed */}
+      {definition && (
         <div>
-          {definition === "Word not found in the dictionary." ? (
-            <p>{definition}</p>
-          ) : (
+          {definition !== "Type a word to search." && definition !== "Word not found in the dictionary." ? (
             <>
               <h3>Definition:</h3>
               <p>{definition}</p>
             </>
+          ) : (
+            <p>{definition}</p>
           )}
         </div>
       )}
