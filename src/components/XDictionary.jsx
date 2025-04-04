@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "../App.css";
-
+import "../App.css"; // Make sure this path is correct
 
 const XDictionary = () => {
   // Our predefined dictionary
@@ -24,7 +23,7 @@ const XDictionary = () => {
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>XDictionary</h1>
+      <h1>Dictionary App</h1>
       <input
         type="text"
         placeholder="Enter a word"
@@ -32,7 +31,8 @@ const XDictionary = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
-      {definition && (
+
+      {definition !== null && (
         <div>
           {definition === "Word not found in the dictionary." ? (
             <p>{definition}</p>
